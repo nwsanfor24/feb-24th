@@ -15,12 +15,68 @@ STRENGTH: ${this.strength},
 HP: ${this.hitPoints}`
         );
     }
+    this.isAlive = function(){
+        if (this.hitPoints > 0) {
+            console.log(this.name + " is still alive!");
+            console.log("\n----------------\n");
+            return true;
+        } else {
+            console.log(this.name + " has died!");
+            return false;
+        }
+    };
+
+    this.attack = function(character2) {
+        character2.hitPoints -= this.strength;
+    };
+
+    this.levelUp = function() {
+        this.age += 1;
+        this.strength += 5;
+        this.hitPoints += 25;
+    };
 }
 
-var char1 = new characterCreate("Axel", "Knight", "M", 26, 150, 300)
-var char2 = new characterCreate("Silas", "Necromancer", "F", 32, 60, 250)
-var char3 = new characterCreate("Clark", "Alien", "M", 33, 9000, 9000)
+var knight = new characterCreate("Axel", "Knight", "M", 26, 150, 300)
+var necromancer = new characterCreate("Silas", "Necromancer", "F", 32, 60, 250)
+var alien = new characterCreate("Clark", "Alien", "M", 33, 9000, 9000)
 
-char1.PrintStats();
-char2.PrintStats();
-char3.PrintStats();
+knight.PrintStats();
+necromancer.PrintStats();
+
+knight.attack(necromancer);
+necromancer.PrintStats();
+necromancer.isAlive();
+
+knight.levelUp();
+knight.PrintStats();
+
+while (knight.isAlive() === true && necromancer.isAlive() === true) {
+
+    knight.attack(necromancer);
+    necromancer.attack(knight);
+
+    knight.PrintStats();
+    necromancer.PrintStats();
+}
+
+console.log(alien.name + " has approached the victor! You must fight to the death!");
+
+knight.PrintStats();
+alien.PrintStats();
+
+knight.attack(alien);
+alien.PrintStats();
+alien.isAlive();
+
+knight.levelUp();
+knight.PrintStats();
+
+while (knight.isAlive() === true && alien.isAlive() === true) {
+
+    knight.attack(alien);
+    alien.attack(knight);
+
+    knight.PrintStats();
+    alien.PrintStats();
+}
