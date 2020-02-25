@@ -19,7 +19,7 @@ function digitalPal(hungry, sleepy, bored, age) {
             console.log("Zzzzzzzzzz");
             this.sleepy = false;
             this.bored = true;
-            this.increaseAge();
+            increaseAge();
         } else {
             console.log("No way! I'm not tired!");
         }
@@ -37,9 +37,11 @@ function digitalPal(hungry, sleepy, bored, age) {
 
     this.increaseAge = function() {
         this.age += 1;
-        console.log("Happy Birthday to me! I am "+ age +" old!");
+        console.log("Happy Birthday to me! I am "+ this.age +" old!");
     }
 }
+
+// Creating a DOG
 
 const dog = new digitalPal();
 
@@ -49,7 +51,7 @@ dog.
         console.log("Woof! Woof!");
     }
     goOutside = function() {
-        if (outside === false) {
+        if (this.outside === false) {
             console.log("Yay! I love the outdoors");
             this.outside = true;
             this.barks();
@@ -58,13 +60,15 @@ dog.
         }
     }
     goInside = function() {
-        if (outside === true) {
+        if (this.outside === true) {
             console.log("Do we have to? Fine...");
             this.outside = false;
         } else {
             console.log("I'm already inside...");
         }
     }
+
+// Creating a CAT
 
 const cat = new digitalPal();
 
@@ -78,7 +82,8 @@ cat.
         console.log("MUAHAHAHAHA! TAKE THAT FURNITURE!");
         this.bored = false;
         this.sleepy = true;
-        if (houseCondition === 0) {
+        if (this.houseCondition === 0) {
+            console.log("It's finally over");
             return;
         }
     }
@@ -86,3 +91,7 @@ cat.
         this.houseCondition += 50;
         console.log("Are you sure about that?");
     }
+
+dog.sleep();
+dog.play();
+dog.feed();
